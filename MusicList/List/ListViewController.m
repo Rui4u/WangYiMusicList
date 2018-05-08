@@ -23,7 +23,6 @@
     self.navigationItem.title = @"呵呵";
     
     [self setTableViewHeaderView];
-    [self setPrivateNavigationBar];
     
 }
 - (void)setTableViewHeaderView {
@@ -33,6 +32,32 @@
         [weakSelf scrollViewDidScroll:weakSelf.tab]; //回调后刷新navigationBar
     }];
 }
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self setPrivateNavigationBar];
+    [self scrollViewDidScroll:self.tab];
+}
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    UINavigationBar * bar = self.navigationController.navigationBar;
+
+    self.navigationController.navigationBar.subviews[0].alpha = 1.0;
+    [bar setBackgroundImage:[self createImageWithColor:[UIColor colorWithRed:254.0/255.0 green:254.0/255.0 blue:254.0/255.0 alpha:1.0]] forBarMetrics:UIBarMetricsDefault];
+    [bar setShadowImage:[self createImageWithColor:[UIColor colorWithRed:170.0/255.0 green:170.0/255.0 blue:170.0/255.0 alpha:1.0]]];
+}
+- (UIImage *)createImageWithColor:(UIColor *)color {
+    
+    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    UIImage *theImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return theImage;
+}
+
 - (void)setPrivateNavigationBar {
     
     UINavigationBar * bar = self.navigationController.navigationBar;
@@ -146,4 +171,6 @@
     UIGraphicsEndImageContext();
     return newImage;
 }
+
+
 @end
