@@ -9,8 +9,8 @@
 #import "ListViewController.h"
 
 
-@interface ListViewController ()<UITableViewDelegate,UITableViewDataSource>
-@property (nonatomic, strong) UITableView *tab;
+@interface ListViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
+@property (nonatomic, strong) UICollectionView *mainCollectionView;
 @property (nonatomic, strong) HeaderView *headerView;
 @end
 
@@ -18,8 +18,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor yellowColor];
-    [self.view addSubview:self.tab];
+    self.view.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:self.mainCollectionView];
     self.navigationItem.title = @"呵呵";
     
     [self setTableViewHeaderView];
@@ -29,19 +29,23 @@
     __weak typeof(self) weakSelf = self;
     self.headerView = [[HeaderView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kTabViewHeight)];
     [self.headerView setIconPicStr:@"123" withCompleteBlock:^{
-        [weakSelf scrollViewDidScroll:weakSelf.tab]; //回调后刷新navigationBar
+        [weakSelf scrollViewDidScroll:weakSelf.mainCollectionView]; //回调后刷新navigationBar
     }];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self setPrivateNavigationBar];
-    [self scrollViewDidScroll:self.tab];
+    [self scrollViewDidScroll:self.mainCollectionView];
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
+   
     [super viewWillDisappear:animated];
-    [self.navigationController setValue:[UINavigationBar new] forKey:@"navigationBar"];
+    
+    [self.navigationController.navigationBar setBackgroundImage:[self createImageWithColor:[UIColor colorWithRed:254.0/255.0 green:254.0/255.0 blue:254.0/255.0 alpha:1.0]] forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.barTintColor = [UIColor redColor];
 }
+
 - (UIImage *)createImageWithColor:(UIColor *)color {
     
     CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
@@ -68,81 +72,153 @@
     }
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+#pragma mark collectionView代理方法
+//返回section个数
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 3;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 44;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (section == 0) {
-        return kTabViewHeight;
-    }else {
-        return 50; //绿色导航条
-    }
-    
-}
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    CGFloat y = _tab.contentOffset.y;
-    NSLog(@"%f",y);
-    
-    if (y < - KHeadViewOff) {
-        [self.tab setContentOffset:CGPointMake(0, - KHeadViewOff + 1) animated:0];
-    }
-    
-    if ( y < kTabViewHeight) {
-        //截图背景图的部分截图 用于设置navigatonBar背景图，造成连贯视觉落差
-        UIImage * view = [self getImageFromView:self.headerView.backgroundImageView withContentOffY: -(self.tab.contentOffset.y) - KHeadViewOff];
-        [self.navigationController.navigationBar setBackgroundImage:view forBarMetrics:UIBarMetricsDefault];
-    }
-}
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellId"];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cellId"];
-    }
-    cell.textLabel.text = [NSString stringWithFormat:@"%ld",indexPath.row];
-    return cell;
-}
-
-- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+//每个section的item个数
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
     if (section == 0) {
         return 0;
     }
     return 20;
 }
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
     
+    UICollectionViewCell *cell = (UICollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"UICollectionViewCellID" forIndexPath:indexPath];
+    cell.backgroundColor = [UIColor yellowColor];
     
+    return cell;
+}
+
+//设置每个item的尺寸
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return CGSizeMake((kScreenWidth- 40)/3,(kScreenWidth- 40)/3);
+}
+
+
+//设置每个item的UIEdgeInsets
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
     if (section == 0) {
-        return self.headerView;
+        return  UIEdgeInsetsZero;
+    }
+    return UIEdgeInsetsMake(10, 10, 10, 10);
+}
+
+//设置每个item水平间距
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+{
+    if (section == 0) {
+        return CGFLOAT_MIN;
     }else {
-       UIView *view = [UIView new];
-        view.backgroundColor = [UIColor greenColor];
-        return view;
+        return 0;
+    }
+    
+}
+
+
+//设置每个item垂直间距
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section
+{
+    if (section == 0) {
+        return CGFLOAT_MIN;
+    }else {
+        return 10;
+    }
+    
+}
+//header的size
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
+{
+    if (section == 0) {
+        return CGSizeMake(self.view.frame.size.width, kTabViewHeight);
+    }else {
+        return CGSizeMake(self.view.frame.size.width, 50);
+    }
+    
+}
+
+//通过设置SupplementaryViewOfKind 来设置头部或者底部的view，其中 ReuseIdentifier 的值必须和 注册是填写的一致，本例都为 “reusableView”
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    
+    if (indexPath.section == 0) {
+        
+        UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"reusableViewID" forIndexPath:indexPath];
+        [headerView addSubview:self.headerView];
+        return headerView;
+    }else {
+         UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"reusableViewTitleID" forIndexPath:indexPath];
+        UILabel *titleLabel = [UILabel new];
+        titleLabel.frame = CGRectMake(0, 0, kScreenWidth, 50);
+        titleLabel.backgroundColor = [UIColor blueColor];
+        [headerView addSubview:titleLabel];
+        return headerView;
     }
 }
 
-- (UITableView *)tab {
-    if (_tab == nil) {
-        _tab = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - kNavBarHeight) style:UITableViewStylePlain];
-        _tab.backgroundColor = [UIColor whiteColor];
-        _tab.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _tab.delegate = self;
-        _tab.dataSource = self;
-        _tab.clipsToBounds = NO;
-//        _tab.bounces = NO;
-        if ([self respondsToSelector:@selector(setContentInsetAdjustmentBehavior:)]) {
-            if (@available(iOS 11.0, *)) {
-                _tab.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-            } else {
-                // Fallback on earlier versions
-            }
-        }
+//点击item方法
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    NSLog(@"%s",__func__);
+}
+
+
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    CGFloat y = self.mainCollectionView.contentOffset.y;
+    NSLog(@"%f",y);
+    
+    if (y < - KHeadViewOff) {
+        [self.mainCollectionView setContentOffset:CGPointMake(0, - KHeadViewOff + 1) animated:0];
     }
-    return _tab;
+    
+    if ( y < kTabViewHeight) {
+        //截图背景图的部分截图 用于设置navigatonBar背景图，造成连贯视觉落差
+        UIImage * view = [self getImageFromView:self.headerView.backgroundImageView withContentOffY: -(self.mainCollectionView.contentOffset.y) - KHeadViewOff];
+        [self.navigationController.navigationBar setBackgroundImage:view forBarMetrics:UIBarMetricsDefault];
+    }
+}
+
+- (UICollectionView *)mainCollectionView {
+    if (_mainCollectionView == nil) {
+        //1.初始化layout
+        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+        //设置collectionView滚动方向
+        [layout setScrollDirection:UICollectionViewScrollDirectionVertical];
+        if (@available(iOS 9.0, *)) {
+            layout.sectionHeadersPinToVisibleBounds = YES;
+        } else {
+            // Fallback on earlier versions
+        }
+
+        //2.初始化collectionView
+        _mainCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight - kNavBarHeight) collectionViewLayout:layout];
+        [self.view addSubview:_mainCollectionView];
+        _mainCollectionView.backgroundColor = [UIColor clearColor];
+        _mainCollectionView.clipsToBounds = NO;
+        //3.注册collectionViewCell
+        //注意，此处的ReuseIdentifier 必须和 cellForItemAtIndexPath 方法中 一致 均为 cellId
+        [_mainCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"UICollectionViewCellID"];
+        
+        //注册headerView  此处的ReuseIdentifier 必须和 cellForItemAtIndexPath 方法中 一致  均为reusableView
+        [_mainCollectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"reusableViewID"];
+         [_mainCollectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"reusableViewTitleID"];
+        //4.设置代理
+        _mainCollectionView.delegate = self;
+        _mainCollectionView.dataSource = self;
+        
+    }
+    return _mainCollectionView;
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
