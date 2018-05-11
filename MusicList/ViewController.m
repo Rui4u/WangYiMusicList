@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "ListViewController.h"
+#import "MoveTableViewViewController.h"
 @interface ViewController ()
 
 @end
@@ -21,7 +22,8 @@
     self.title = @"123";
 }
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    ListViewController * vc = [ListViewController new];
+//    ListViewController * vc = [ListViewController new];
+    MoveTableViewViewController *vc = [MoveTableViewViewController new];
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)didReceiveMemoryWarning {

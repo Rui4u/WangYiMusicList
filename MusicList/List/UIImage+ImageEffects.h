@@ -1,9 +1,9 @@
 //
 //  UIImage+imageEffects.h
-//  MusicList
+//  jingdongfang
 //
-//  Created by sharui on 2018/5/7.
-//  Copyright © 2018年 com.sharui.demo. All rights reserved.
+//  Created by RKL on 2018/5/7.
+//  Copyright © 2018年 BOE-SBG-CTO. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
