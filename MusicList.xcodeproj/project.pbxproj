@@ -17,6 +17,7 @@
 		2BADFD7E209FFF8F004DEFA9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BADFD7D209FFF8F004DEFA9 /* main.m */; };
 		2BADFD88209FFF8F004DEFA9 /* MusicListTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BADFD87209FFF8F004DEFA9 /* MusicListTests.m */; };
 		2BADFD93209FFF8F004DEFA9 /* MusicListUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BADFD92209FFF8F004DEFA9 /* MusicListUITests.m */; };
+		2BE7485620B56F8C00BD7644 /* ClickImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE7485520B56F8B00BD7644 /* ClickImageViewController.m */; };
 		2BE900A620A56EBD00CF14EC /* CollectionReusableViewTitle2.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE9009420A56EBC00CF14EC /* CollectionReusableViewTitle2.m */; };
 		2BE900A720A56EBD00CF14EC /* WSLWaterFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE9009520A56EBC00CF14EC /* WSLWaterFlowLayout.m */; };
 		2BE900A820A56EBD00CF14EC /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE9009820A56EBC00CF14EC /* HeaderView.m */; };
@@ -68,6 +69,8 @@
 		2BADFD8E209FFF8F004DEFA9 /* MusicListUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MusicListUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BADFD92209FFF8F004DEFA9 /* MusicListUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicListUITests.m; sourceTree = "<group>"; };
 		2BADFD94209FFF8F004DEFA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2BE7485420B56F8B00BD7644 /* ClickImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickImageViewController.h; sourceTree = "<group>"; };
+		2BE7485520B56F8B00BD7644 /* ClickImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickImageViewController.m; sourceTree = "<group>"; };
 		2BE9009320A56EBC00CF14EC /* CollectionReusableViewTitle1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionReusableViewTitle1.h; sourceTree = "<group>"; };
 		2BE9009420A56EBC00CF14EC /* CollectionReusableViewTitle2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionReusableViewTitle2.m; sourceTree = "<group>"; };
 		2BE9009520A56EBC00CF14EC /* WSLWaterFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSLWaterFlowLayout.m; sourceTree = "<group>"; };
@@ -167,6 +170,7 @@
 			children = (
 				2B8AF5EB20A56C3D002EE765 /* UIView+Frame.h */,
 				2B8AF5EA20A56C3D002EE765 /* UIView+Frame.m */,
+				2BE7485320B56F8B00BD7644 /* ClickImageVC */,
 				2BE900B020A56EF200CF14EC /* MoveTableView */,
 				2B56190B20A151A6005BAEBA /* List */,
 				2BADFD6E209FFF8D004DEFA9 /* AppDelegate.h */,
@@ -199,6 +203,15 @@
 				2BADFD94209FFF8F004DEFA9 /* Info.plist */,
 			);
 			path = MusicListUITests;
+			sourceTree = "<group>";
+		};
+		2BE7485320B56F8B00BD7644 /* ClickImageVC */ = {
+			isa = PBXGroup;
+			children = (
+				2BE7485420B56F8B00BD7644 /* ClickImageViewController.h */,
+				2BE7485520B56F8B00BD7644 /* ClickImageViewController.m */,
+			);
+			path = ClickImageVC;
 			sourceTree = "<group>";
 		};
 		2BE9009920A56EBC00CF14EC /* source */ = {
@@ -363,6 +376,7 @@
 				2BE900B420A56FF800CF14EC /* MoveTableViewViewController.m in Sources */,
 				2BE900AB20A56EBD00CF14EC /* UIImageView+LBBlurredImage.m in Sources */,
 				2B56191820A151A6005BAEBA /* ListViewController.m in Sources */,
+				2BE7485620B56F8C00BD7644 /* ClickImageViewController.m in Sources */,
 				2BE900AC20A56EBD00CF14EC /* CollectionReusableViewTitle1.m in Sources */,
 				2BADFD70209FFF8D004DEFA9 /* AppDelegate.m in Sources */,
 			);

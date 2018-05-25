@@ -9,8 +9,9 @@
 #import "ViewController.h"
 #import "ListViewController.h"
 #import "MoveTableViewViewController.h"
-@interface ViewController ()
-
+#import "ClickImageViewController.h"
+@interface ViewController ()<ClickImageViewControllerDelegate>
+@property (nonatomic, strong) UIImageView *imageView;
 @end
 
 @implementation ViewController
@@ -20,17 +21,27 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor redColor];
     self.title = @"123";
+    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(50, 50, 200, 200)];
+    [self.view addSubview:self.imageView];
+    
 }
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-//    ListViewController * vc = [ListViewController new];
-    MoveTableViewViewController *vc = [MoveTableViewViewController new];
-    [self.navigationController pushViewController:vc animated:YES];
+
+    UIImage *image = [UIImage imageNamed:@"1525674467336.jpg"]; //换成sd
+
+    ClickImageViewController * clipView = [[ClickImageViewController alloc]initWithImage:image];
+    clipView.delegate = self;
+    clipView.radius = 150;   //设置 裁剪框的半径
+    clipView.scaleRation = 5;
+    [self.navigationController pushViewController:clipView animated:YES];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(void)ClipViewController:(ClickImageViewController *)clipViewController FinishClipImage:(UIImage *)editImage{
+    self.imageView.image = editImage;
+}
 /*
 #pragma mark - Navigation
 
