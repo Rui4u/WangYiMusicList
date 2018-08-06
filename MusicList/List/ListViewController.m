@@ -13,6 +13,10 @@
 #import "IGPicListMainCollectionViewCell.h"
 #import "CollectionReusableViewTitle1.h"
 #import "CollectionReusableViewTitle2.h"
+
+
+typedef void(^RunLoopBlock)(void);
+
 @interface ListViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,WSLWaterFlowLayoutDelegate>
 
 @property (nonatomic, strong) UICollectionView *mainCollectionView;
@@ -21,6 +25,10 @@
  数据源
  */
 @property (nonatomic, strong) NSArray * dataArr;
+
+@property (nonatomic, strong) NSMutableArray *tasks;
+@property (nonatomic, copy) RunLoopBlock task;
+
 @end
 
 static NSString * const PicRectionViewCollectionViewCellID = @"PicRectionViewCollectionViewCellID";
@@ -29,6 +37,8 @@ static NSString * const IGPicListMainCollectionViewCellID = @"IGPicListMainColle
 static NSString * const reusableViewTitle2ID = @"reusableViewTitle2ID";
 static NSString * const reusableViewTitle1ID = @"reusableViewTitle1ID";
 static NSString * const reusableViewHeaderID = @"reusableViewHeaderID";
+static NSString * const reusableViewFootID = @"reusableViewFootID";
+
 
 @implementation ListViewController
 
@@ -39,16 +49,16 @@ static NSString * const reusableViewHeaderID = @"reusableViewHeaderID";
     [self.view addSubview:self.mainCollectionView];
     
     self.navigationItem.title = @"画单";
-    self.dataArr = @[@"1",@"2",@"2",@"1",@"1",@"1",@"2"];
+    self.dataArr = @[@"1",@"2",@"2",@"1",@"1",@"1",@"2",@"1",@"2",@"2",@"1",@"1",@"1",@"2",@"1",@"2",@"2",@"1",@"1",@"1",@"2",@"1",@"2",@"2",@"1",@"1",@"1",@"2"];
     [self setTableViewHeaderView];
     [self setPrivateNavigationBar];
-    
+    [self addRunLoopObserver];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self setPrivateNavigationBar];
-    [self scrollViewDidScroll:self.mainCollectionView];
+//    [self scrollViewDidScroll:self.mainCollectionView];
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
@@ -121,11 +131,51 @@ static NSString * const reusableViewHeaderID = @"reusableViewHeaderID";
         
     }else {
         cell = (UICollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:IGPicListMainCollectionViewCellID forIndexPath:indexPath];
-        cell.backgroundColor = [UIColor purpleColor];
+      
+        [self addImage:^{
+            ((IGPicListMainCollectionViewCell *)cell).iconImage.image = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"test" ofType:@"jpg"]];
+            
+        }];
     }
-    [cell setNeedsLayout];
     
     return cell;
+}
+
+- (void) addImage:(RunLoopBlock) block {
+    [self.tasks addObject:block];
+    if (self.tasks.count > 18) {
+        [self.tasks removeObjectAtIndex:0];
+    }
+    
+    
+}
+- (void) addRunLoopObserver {
+    
+    CFRunLoopRef runloop = CFRunLoopGetCurrent();
+    CFRunLoopObserverContext context = {
+        0,
+        (__bridge void *)self,
+        &CFRetain,
+        &CFRelease,
+        NULL
+    };
+    
+    CFRunLoopObserverRef runLoopObserver = CFRunLoopObserverCreate(NULL, kCFRunLoopBeforeWaiting, YES, 0, &callBack, &context);
+    CFRunLoopAddObserver(runloop, runLoopObserver, kCFRunLoopCommonModes);
+    
+    CFRelease(runLoopObserver);
+    
+}
+void callBack(CFRunLoopObserverRef observer, CFRunLoopActivity activity, void *info){
+    NSLog(@"------123-123-------123123");
+    ListViewController * vc = (__bridge ListViewController *)info;
+    if (vc.tasks.count == 0) {
+        return;
+    }
+    RunLoopBlock task = vc.tasks.firstObject;
+    task();
+    [vc.tasks removeObjectAtIndex:0];
+   
 }
 
 - (CGFloat)waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout heightForItemAtIndexPath:(NSIndexPath *)indexPath itemWidth:(CGFloat)itemWidth {
@@ -133,18 +183,19 @@ static NSString * const reusableViewHeaderID = @"reusableViewHeaderID";
         if ([self.dataArr[indexPath.item] integerValue]==1)
         {
             //横板
-            return ((kScreenWidth-16)/2*1080/1920);
+            return ((kScreenWidth-16)/2*1080/1920/2);
         }
         else if ([self.dataArr[indexPath.item] integerValue]==2)
         {
             //坚板
-            return ((kScreenWidth-16)/2*1920/1080);
+            return ((kScreenWidth-16)/2*1920/1080/2);
         }
     }if (indexPath.section == 2) {
         return 163;
     }
     return 0;
 }
+
 /** 头视图Size */
 -(CGSize )waterFlowLayout:(WSLWaterFlowLayout *)waterFlowLayout sizeForHeaderViewInSection:(NSInteger)section {
     if (section == 0)
@@ -193,22 +244,35 @@ static NSString * const reusableViewHeaderID = @"reusableViewHeaderID";
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     
-    if (indexPath.section == 0) {
-        
-        UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:reusableViewHeaderID forIndexPath:indexPath];
-        [headerView addSubview:self.headerView];
-        return headerView;
-    }
-    else if (indexPath.section == 1)
-    {
-        CollectionReusableViewTitle1 *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:reusableViewTitle1ID forIndexPath:indexPath];
-        headerView.totolNum.text = @"(15)";
-        
-        return headerView;
-    }else {
-        CollectionReusableViewTitle2 *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:reusableViewTitle2ID forIndexPath:indexPath];
-        headerView.titleLabel.text = @"相关画单推荐";
-        return headerView;
+    if ([kind isEqualToString:@"UICollectionElementKindSectionFooter"]) {
+        UICollectionReusableView *footView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:reusableViewFootID forIndexPath:indexPath];
+        footView.backgroundColor = [UIColor blackColor];
+        NSLog(@"=============5");
+        return footView;
+    } else {
+        if (indexPath.section == 0) {
+            
+            UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:reusableViewHeaderID forIndexPath:indexPath];
+            [headerView addSubview:self.headerView];
+            headerView.backgroundColor = [UIColor redColor];
+            NSLog(@"=============0");
+            return headerView;
+            
+        }
+        else if (indexPath.section == 1)
+        {
+            CollectionReusableViewTitle1 *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:reusableViewTitle1ID forIndexPath:indexPath];
+            headerView.totolNum.text = @"(15)";
+            headerView.backgroundColor = [UIColor yellowColor];
+            NSLog(@"=============1");
+            return headerView;
+        }else {
+            CollectionReusableViewTitle2 *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:reusableViewTitle2ID forIndexPath:indexPath];
+            headerView.titleLabel.text = @"相关画单推荐";
+            headerView.backgroundColor = [UIColor greenColor];
+            NSLog(@"=============2");
+            return headerView;
+        }
     }
 }
 
@@ -269,6 +333,7 @@ static NSString * const reusableViewHeaderID = @"reusableViewHeaderID";
         
         //注册headerView  此处的ReuseIdentifier 必须和 cellForItemAtIndexPath 方法中 一致  均为reusableView
         [_mainCollectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:reusableViewHeaderID];
+        [_mainCollectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:reusableViewFootID];
         [_mainCollectionView registerClass:[CollectionReusableViewTitle1 class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:reusableViewTitle1ID];
         [_mainCollectionView registerClass:[CollectionReusableViewTitle2 class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:reusableViewTitle2ID];
         
@@ -303,7 +368,12 @@ static NSString * const reusableViewHeaderID = @"reusableViewHeaderID";
     return newImage;
 }
 
-
+- (NSMutableArray *)tasks {
+    if (_tasks == nil) {
+        _tasks = [NSMutableArray new];
+    }
+    return _tasks;
+}
 
 @end
 

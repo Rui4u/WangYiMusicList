@@ -10,4 +10,6 @@
 
 @interface IGPicListMainCollectionViewCell : UICollectionViewCell
 @property (nonatomic, strong) UILabel * nameLabel;
+@property (nonatomic, strong) UIImageView * iconImage;
+
 @end

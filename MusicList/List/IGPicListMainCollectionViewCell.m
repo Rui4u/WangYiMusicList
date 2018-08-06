@@ -7,7 +7,12 @@
 //
 
 #import "IGPicListMainCollectionViewCell.h"
+@interface IGPicListMainCollectionViewCell()
+{
+}
+@end
 @implementation IGPicListMainCollectionViewCell
+
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -27,10 +32,13 @@
     titleLabel.font = [UIFont systemFontOfSize:14];
     [self addSubview:titleLabel];
     
-    UIImageView * iconImage = [UIImageView new];
-    iconImage.backgroundColor = [UIColor redColor];
-    iconImage.frame = CGRectMake(self.width - 8 - 20, self.height - 20 - 8 ,20,20);
-    [self addSubview:iconImage];
+    _iconImage = [UIImageView new];
+    [self addSubview:_iconImage];
     
+}
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    _nameLabel.frame = CGRectMake(10, self.height -14 - 8, 80, 14);
+    _iconImage.frame = CGRectMake(0,0,self.width,self.height);
 }
 @end

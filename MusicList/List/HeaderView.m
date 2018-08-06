@@ -34,6 +34,8 @@
     _backgroundImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, -kNavBarHeight - KHeadViewOff, self.bounds.size.width,
                                                                          self.bounds.size.height + kNavBarHeight +KHeadViewOff)];  //向上拉伸navbar 高度
     [_backgroundImageView setImageToBlur:iconImage blurRadius:20 completionBlock:nil]; //高斯处理
+    
+    
     [self addSubview:_backgroundImageView];
     _backgroundImageView.contentMode = UIViewContentModeScaleToFill;
     
@@ -68,6 +70,7 @@
         UIButton * button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.frame = CGRectMake(tempWidth, CGRectGetMaxY(_leftView.frame)+19, 22, 19);
         button.backgroundColor = [UIColor yellowColor];
+        [button addTarget:self action:@selector(test) forControlEvents:UIControlEventTouchUpInside];;
         button;
     });
     [self addSubview:self.btn1];
@@ -147,7 +150,9 @@
     _leftView = leftView;
 }
 
-
+- (void)test {
+    NSLog(@"123123");
+}
 
 #pragma mark - 处理图片的方法  网络请求回来后调用
 - (void)setIconPicStr:(NSString *)iconPicStr withCompleteBlock:(picCompleteBlock) completion {

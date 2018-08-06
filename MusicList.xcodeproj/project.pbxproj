@@ -7,9 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B388D902117DCEB00021CF2 /* IGAlbumPreviewCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B388D8F2117DCEA00021CF2 /* IGAlbumPreviewCollectionViewCell.m */; };
+		2B388D932117E57C00021CF2 /* IGAlbumPreviewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B388D922117E57B00021CF2 /* IGAlbumPreviewLayout.m */; };
+		2B388D962117E63D00021CF2 /* 2b59929c12852714e0cbc252c84c392d.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2B388D942117E63C00021CF2 /* 2b59929c12852714e0cbc252c84c392d.jpg */; };
+		2B388D972117E63D00021CF2 /* ee7abfd7e916f0b16de6623c3c3dcbc9.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 2B388D952117E63C00021CF2 /* ee7abfd7e916f0b16de6623c3c3dcbc9.jpeg */; };
+		2B388D992117FAE000021CF2 /* ViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B388D982117FAE000021CF2 /* ViewController.storyboard */; };
+		2B388D9C2118114200021CF2 /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B388D9B2118114200021CF2 /* ImageViewController.m */; };
 		2B3FBD2F20A1AF0800EE1D9C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B3FBD2E20A1AF0800EE1D9C /* ViewController.m */; };
 		2B56191820A151A6005BAEBA /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B56190E20A151A6005BAEBA /* ListViewController.m */; };
+		2B6C2C902114390200B59139 /* CustomSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6C2C8F2114390200B59139 /* CustomSliderView.m */; };
+		2B6C2C942114397600B59139 /* IGFullScreenPreviewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6C2C932114397500B59139 /* IGFullScreenPreviewVC.m */; };
 		2B8AF5EC20A56C3E002EE765 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8AF5EA20A56C3D002EE765 /* UIView+Frame.m */; };
+		2B8D35D8211825C4005D0970 /* NSTimer+SRTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8D35D7211825C4005D0970 /* NSTimer+SRTimer.m */; };
+		2B8D35DC21182965005D0970 /* TimerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B8D35DB21182965005D0970 /* TimerViewController.m */; };
+		2B92CB2C21113FB300D73929 /* test.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2B92CB2B21113FB200D73929 /* test.jpg */; };
 		2BADFD70209FFF8D004DEFA9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BADFD6F209FFF8D004DEFA9 /* AppDelegate.m */; };
 		2BADFD76209FFF8D004DEFA9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BADFD74209FFF8D004DEFA9 /* Main.storyboard */; };
 		2BADFD78209FFF8F004DEFA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BADFD77209FFF8F004DEFA9 /* Assets.xcassets */; };
@@ -49,12 +60,30 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B388D8E2117DCEA00021CF2 /* IGAlbumPreviewCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IGAlbumPreviewCollectionViewCell.h; sourceTree = "<group>"; };
+		2B388D8F2117DCEA00021CF2 /* IGAlbumPreviewCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IGAlbumPreviewCollectionViewCell.m; sourceTree = "<group>"; };
+		2B388D912117E57B00021CF2 /* IGAlbumPreviewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IGAlbumPreviewLayout.h; sourceTree = "<group>"; };
+		2B388D922117E57B00021CF2 /* IGAlbumPreviewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IGAlbumPreviewLayout.m; sourceTree = "<group>"; };
+		2B388D942117E63C00021CF2 /* 2b59929c12852714e0cbc252c84c392d.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2b59929c12852714e0cbc252c84c392d.jpg; sourceTree = "<group>"; };
+		2B388D952117E63C00021CF2 /* ee7abfd7e916f0b16de6623c3c3dcbc9.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ee7abfd7e916f0b16de6623c3c3dcbc9.jpeg; sourceTree = "<group>"; };
+		2B388D982117FAE000021CF2 /* ViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ViewController.storyboard; sourceTree = "<group>"; };
+		2B388D9A2118114200021CF2 /* ImageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageViewController.h; sourceTree = "<group>"; };
+		2B388D9B2118114200021CF2 /* ImageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageViewController.m; sourceTree = "<group>"; };
 		2B3FBD2D20A1AF0800EE1D9C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		2B3FBD2E20A1AF0800EE1D9C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		2B56190E20A151A6005BAEBA /* ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListViewController.m; sourceTree = "<group>"; };
 		2B56191420A151A6005BAEBA /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
+		2B6C2C8E2114390200B59139 /* CustomSliderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSliderView.h; sourceTree = "<group>"; };
+		2B6C2C8F2114390200B59139 /* CustomSliderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSliderView.m; sourceTree = "<group>"; };
+		2B6C2C922114397500B59139 /* IGFullScreenPreviewVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IGFullScreenPreviewVC.h; sourceTree = "<group>"; };
+		2B6C2C932114397500B59139 /* IGFullScreenPreviewVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IGFullScreenPreviewVC.m; sourceTree = "<group>"; };
 		2B8AF5EA20A56C3D002EE765 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
 		2B8AF5EB20A56C3D002EE765 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
+		2B8D35D321182427005D0970 /* NSTimer+SRTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSTimer+SRTimer.h"; sourceTree = "<group>"; };
+		2B8D35D7211825C4005D0970 /* NSTimer+SRTimer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+SRTimer.m"; sourceTree = "<group>"; };
+		2B8D35DA21182965005D0970 /* TimerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimerViewController.h; sourceTree = "<group>"; };
+		2B8D35DB21182965005D0970 /* TimerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimerViewController.m; sourceTree = "<group>"; };
+		2B92CB2B21113FB200D73929 /* test.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test.jpg; sourceTree = "<group>"; };
 		2BADFD6B209FFF8D004DEFA9 /* MusicList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BADFD6E209FFF8D004DEFA9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2BADFD6F209FFF8D004DEFA9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -145,6 +174,49 @@
 			path = List;
 			sourceTree = "<group>";
 		};
+		2B6C2C8D2114390200B59139 /* SliderView */ = {
+			isa = PBXGroup;
+			children = (
+				2B6C2C8E2114390200B59139 /* CustomSliderView.h */,
+				2B6C2C8F2114390200B59139 /* CustomSliderView.m */,
+			);
+			path = SliderView;
+			sourceTree = "<group>";
+		};
+		2B6C2C912114390B00B59139 /* MusicView */ = {
+			isa = PBXGroup;
+			children = (
+				2B388D942117E63C00021CF2 /* 2b59929c12852714e0cbc252c84c392d.jpg */,
+				2B388D952117E63C00021CF2 /* ee7abfd7e916f0b16de6623c3c3dcbc9.jpeg */,
+				2B6C2C922114397500B59139 /* IGFullScreenPreviewVC.h */,
+				2B6C2C932114397500B59139 /* IGFullScreenPreviewVC.m */,
+				2B388D912117E57B00021CF2 /* IGAlbumPreviewLayout.h */,
+				2B388D922117E57B00021CF2 /* IGAlbumPreviewLayout.m */,
+				2B388D8E2117DCEA00021CF2 /* IGAlbumPreviewCollectionViewCell.h */,
+				2B388D8F2117DCEA00021CF2 /* IGAlbumPreviewCollectionViewCell.m */,
+			);
+			path = MusicView;
+			sourceTree = "<group>";
+		};
+		2B8D35D221182416005D0970 /* CustomTimer */ = {
+			isa = PBXGroup;
+			children = (
+				2B8D35D321182427005D0970 /* NSTimer+SRTimer.h */,
+				2B8D35D7211825C4005D0970 /* NSTimer+SRTimer.m */,
+			);
+			path = CustomTimer;
+			sourceTree = "<group>";
+		};
+		2B8D35D921182958005D0970 /* NSTimerVC */ = {
+			isa = PBXGroup;
+			children = (
+				2B8D35D221182416005D0970 /* CustomTimer */,
+				2B8D35DA21182965005D0970 /* TimerViewController.h */,
+				2B8D35DB21182965005D0970 /* TimerViewController.m */,
+			);
+			path = NSTimerVC;
+			sourceTree = "<group>";
+		};
 		2BADFD62209FFF8D004DEFA9 = {
 			isa = PBXGroup;
 			children = (
@@ -168,6 +240,10 @@
 		2BADFD6D209FFF8D004DEFA9 /* MusicList */ = {
 			isa = PBXGroup;
 			children = (
+				2B8D35D921182958005D0970 /* NSTimerVC */,
+				2B6C2C912114390B00B59139 /* MusicView */,
+				2B6C2C8D2114390200B59139 /* SliderView */,
+				2B92CB2B21113FB200D73929 /* test.jpg */,
 				2B8AF5EB20A56C3D002EE765 /* UIView+Frame.h */,
 				2B8AF5EA20A56C3D002EE765 /* UIView+Frame.m */,
 				2BE7485320B56F8B00BD7644 /* ClickImageVC */,
@@ -182,6 +258,7 @@
 				2BADFD7D209FFF8F004DEFA9 /* main.m */,
 				2B3FBD2D20A1AF0800EE1D9C /* ViewController.h */,
 				2B3FBD2E20A1AF0800EE1D9C /* ViewController.m */,
+				2B388D982117FAE000021CF2 /* ViewController.storyboard */,
 				2BE900B120A56F4F00CF14EC /* PrefixHeader.pch */,
 			);
 			path = MusicList;
@@ -210,6 +287,8 @@
 			children = (
 				2BE7485420B56F8B00BD7644 /* ClickImageViewController.h */,
 				2BE7485520B56F8B00BD7644 /* ClickImageViewController.m */,
+				2B388D9A2118114200021CF2 /* ImageViewController.h */,
+				2B388D9B2118114200021CF2 /* ImageViewController.m */,
 			);
 			path = ClickImageVC;
 			sourceTree = "<group>";
@@ -336,10 +415,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BE900AA20A56EBD00CF14EC /* 1525674467336.jpg in Resources */,
+				2B92CB2C21113FB300D73929 /* test.jpg in Resources */,
 				2BADFD7B209FFF8F004DEFA9 /* LaunchScreen.storyboard in Resources */,
+				2B388D962117E63D00021CF2 /* 2b59929c12852714e0cbc252c84c392d.jpg in Resources */,
 				2BE900A920A56EBD00CF14EC /* timg.jpeg in Resources */,
+				2B388D972117E63D00021CF2 /* ee7abfd7e916f0b16de6623c3c3dcbc9.jpeg in Resources */,
 				2BADFD78209FFF8F004DEFA9 /* Assets.xcassets in Resources */,
 				2BADFD76209FFF8D004DEFA9 /* Main.storyboard in Resources */,
+				2B388D992117FAE000021CF2 /* ViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,19 +447,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B8D35DC21182965005D0970 /* TimerViewController.m in Sources */,
 				2BE900AE20A56EBD00CF14EC /* IGPicListMainCollectionViewCell.m in Sources */,
 				2BE900AF20A56EBD00CF14EC /* UIImage+ImageEffects.m in Sources */,
 				2B3FBD2F20A1AF0800EE1D9C /* ViewController.m in Sources */,
 				2BE900A620A56EBD00CF14EC /* CollectionReusableViewTitle2.m in Sources */,
+				2B388D902117DCEB00021CF2 /* IGAlbumPreviewCollectionViewCell.m in Sources */,
 				2BE900AD20A56EBD00CF14EC /* PicRectionViewCollectionViewCell.m in Sources */,
 				2BADFD7E209FFF8F004DEFA9 /* main.m in Sources */,
 				2BE900A820A56EBD00CF14EC /* HeaderView.m in Sources */,
+				2B388D932117E57C00021CF2 /* IGAlbumPreviewLayout.m in Sources */,
 				2BE900A720A56EBD00CF14EC /* WSLWaterFlowLayout.m in Sources */,
+				2B388D9C2118114200021CF2 /* ImageViewController.m in Sources */,
+				2B6C2C902114390200B59139 /* CustomSliderView.m in Sources */,
 				2B8AF5EC20A56C3E002EE765 /* UIView+Frame.m in Sources */,
 				2BE900B420A56FF800CF14EC /* MoveTableViewViewController.m in Sources */,
 				2BE900AB20A56EBD00CF14EC /* UIImageView+LBBlurredImage.m in Sources */,
+				2B6C2C942114397600B59139 /* IGFullScreenPreviewVC.m in Sources */,
 				2B56191820A151A6005BAEBA /* ListViewController.m in Sources */,
 				2BE7485620B56F8C00BD7644 /* ClickImageViewController.m in Sources */,
+				2B8D35D8211825C4005D0970 /* NSTimer+SRTimer.m in Sources */,
 				2BE900AC20A56EBD00CF14EC /* CollectionReusableViewTitle1.m in Sources */,
 				2BADFD70209FFF8D004DEFA9 /* AppDelegate.m in Sources */,
 			);

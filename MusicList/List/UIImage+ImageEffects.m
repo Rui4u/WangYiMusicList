@@ -141,7 +141,6 @@
     CGContextRef outputContext = UIGraphicsGetCurrentContext();
     CGContextScaleCTM(outputContext, 1.0, -1.0);
     CGContextTranslateCTM(outputContext, 0, -self.size.height);
-    
     // Draw base image.
     CGContextDrawImage(outputContext, imageRect, self.CGImage);
     
@@ -150,6 +149,7 @@
         CGContextSaveGState(outputContext);
         if (maskImage) {
             CGContextClipToMask(outputContext, imageRect, maskImage.CGImage);
+//
         }
         CGContextDrawImage(outputContext, imageRect, effectImage.CGImage);
         CGContextRestoreGState(outputContext);
@@ -163,6 +163,10 @@
         CGContextRestoreGState(outputContext);
     }
     
+    [[UIColor colorWithWhite:0 alpha:.2] set];
+    CGContextFillRect(outputContext, imageRect);
+    
+
     // Output image is ready.
     UIImage *outputImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
